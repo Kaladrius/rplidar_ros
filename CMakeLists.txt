@@ -18,6 +18,19 @@ if(MSVC)
   )
 endif()
 
+# Suppress all the compiler warnings
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    add_compile_options(
+      -Wno-unused-parameter     # Suppress unused parameter warnings
+      -Wno-pedantic             # Suppress pedantic warnings about zero-size arrays
+      -Wno-unused-function      # Suppress unused function warnings
+      -Wno-unused-value         # Suppress write() return value warning
+      -Wno-sign-compare         # Suppress integer sign comparison warning
+      -Wno-ignored-qualifiers   # Suppress ignored const qualifier warning
+      -Wno-cast-function-type   # Suppress thread creation function cast warning
+    )
+endif()
+
 set(RPLIDAR_SDK_PATH "./sdk/")
 
 if(APPLE)
